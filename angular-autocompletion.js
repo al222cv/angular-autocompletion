@@ -14,7 +14,7 @@ angular.module('autocompletion', []).directive('autocompletion', function($timeo
             
             var timeout;
             scope.$watch('ngModel', function(newVal, oldVal){
-                if(!newVal || newVal.length < scope.min || newVal == oldVal) return;
+                if(!newVal || (newVal.length < scope.min && oldVal.length < scope.min) || newVal == oldVal) return;
                 
                 $timeout.cancel(timeout);
                 timeout = $timeout(function(){
